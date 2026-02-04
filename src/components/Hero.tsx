@@ -26,16 +26,16 @@ const Hero = () => {
             Ahatesam Ahamed
           </h1>
           <p className="text-blue-400 font-medium tracking-[0.2em] uppercase text-sm md:text-base mb-8">
-            Full-Stack Developer • Tricode IT
+            Full-Stack Software Engineer 
           </p>
 
-          {/* PROFESSIONAL BIO */}
+          {/* PROFESSIONAL BIO - REWRITTEN FOR SKILL & DEDICATION */}
           <div className="max-w-2xl mx-auto">
             <p className="text-lg md:text-xl text-gray-400 leading-relaxed mb-10">
-              Pursuing a <span className="text-white">B.Sc. in CSE at North South University</span> while 
-              architecting scalable digital solutions professionally. I specialize in bridging 
-              technical complexity with seamless user experiences, driven by a passion for 
-              <span className="text-white"> engineering excellence</span> and modern web ecosystems.
+              Specializing in the development of <span className="text-white">high-performance, scalable architectures</span>. 
+              My approach is defined by a relentless dedication to <span className="text-white">clean code, technical precision,</span> and 
+              seamless user experiences. I don't just build features; I engineer robust digital ecosystems that drive 
+              measurable impact and professional excellence.
             </p>
           </div>
 
@@ -45,7 +45,7 @@ const Hero = () => {
               href="#projects" 
               className="group relative px-8 py-3 bg-white text-black font-bold rounded-full overflow-hidden transition-all hover:pr-10"
             >
-              <span className="relative z-10">View Portfolio</span>
+              <span className="relative z-10">View Projects</span>
               <span className="absolute right-4 opacity-0 group-hover:opacity-100 transition-all">→</span>
             </a>
             <a 
