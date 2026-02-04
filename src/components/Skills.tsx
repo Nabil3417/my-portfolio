@@ -25,7 +25,8 @@ const Skills = () => {
   ];
 
   return (
-    <section className="py-24 bg-[#030712] relative overflow-hidden">
+    /* ADDED id="skills" HERE */
+    <section id="skills" className="py-24 bg-[#030712] relative overflow-hidden scroll-mt-20">
       {/* Background decoration */}
       <div className="absolute bottom-0 right-0 w-64 h-64 bg-blue-600/5 blur-[100px] rounded-full"></div>
 
