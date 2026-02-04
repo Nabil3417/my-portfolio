@@ -1,6 +1,6 @@
 "use client";
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, easeOut } from 'framer-motion';
 
 const About = () => {
   // Animation for the progress bars
@@ -8,7 +8,7 @@ const About = () => {
     hidden: { width: 0 },
     visible: { 
       width: width, 
-      transition: { duration: 1.5, ease: "easeOut" } 
+      transition: { duration: 1.5, ease: easeOut } 
     }
   });
 
