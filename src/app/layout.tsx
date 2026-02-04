@@ -1,14 +1,15 @@
-import React from "react";
+import './globals.css';
+import { ReactNode } from 'react';
 
-// This tells TypeScript exactly what "children" is
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export const metadata = {
+  title: 'Your Name | Portfolio',
+  description: 'Personal Portfolio Website',
+};
+
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className="bg-[#030712] text-white">
+    <html lang="en">
+      <body className="bg-black text-white scroll-smooth">
         {children}
       </body>
     </html>
