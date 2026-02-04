@@ -1,4 +1,6 @@
+"use client";
 import React from 'react';
+import { motion } from 'framer-motion';
 import { 
   SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiRedux,
   SiNodedotjs, SiExpress, SiPython, SiDjango, SiFastapi,
@@ -50,22 +52,59 @@ const Skills = () => {
     }
   ];
 
+  // Container variants for staggering the groups
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  // Variants for individual cards
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { type: "spring", stiffness: 100 } 
+    }
+  };
+
   return (
     <section id="skills" className="py-24 bg-[#030712] relative overflow-hidden scroll-mt-20">
+      {/* Ambient background glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-blue-600/5 blur-[120px] rounded-full pointer-events-none"></div>
+
       <div className="container mx-auto px-6 relative z-10">
-        <div className="text-center mb-16">
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
           <h2 className="text-4xl font-bold text-white mb-4">Technical Stack</h2>
           <div className="h-1 w-20 bg-blue-600 mx-auto rounded-full mb-6"></div>
           <p className="text-gray-400 max-w-xl mx-auto italic">
             "The strength of the architecture is defined by the tools chosen to build it."
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
+        >
           {skillGroups.map((group, index) => (
-            <div 
+            <motion.div 
               key={index} 
-              className="p-8 rounded-3xl bg-gray-900/20 border border-gray-800 hover:border-blue-500/30 transition-all duration-500 backdrop-blur-sm"
+              variants={cardVariants}
+              whileHover={{ y: -5, borderColor: "rgba(59, 130, 246, 0.5)" }}
+              className="p-8 rounded-3xl bg-gray-900/20 border border-gray-800 transition-colors duration-500 backdrop-blur-sm"
             >
               <h3 className="text-sm font-black uppercase tracking-[0.2em] text-blue-500 mb-8 border-b border-gray-800 pb-4">
                 {group.category}
@@ -73,19 +112,23 @@ const Skills = () => {
               
               <div className="grid grid-cols-2 gap-y-6">
                 {group.skills.map((skill, idx) => (
-                  <div key={idx} className="flex flex-col items-start group cursor-default">
-                    <div className="text-2xl mb-2 opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300">
+                  <motion.div 
+                    key={idx} 
+                    className="flex flex-col items-start group cursor-default"
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    <div className="text-2xl mb-2 opacity-70 group-hover:opacity-100 transition-all duration-300">
                       {skill.icon}
                     </div>
-                    <span className="text-xs font-medium text-gray-500 group-hover:text-white transition-colors duration-300">
+                    <span className="text-[10px] font-bold text-gray-500 group-hover:text-white uppercase tracking-tighter transition-colors duration-300">
                       {skill.name}
                     </span>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
