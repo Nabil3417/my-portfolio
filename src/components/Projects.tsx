@@ -10,7 +10,7 @@ const Projects = () => {
       description: "A specialized healthcare solution developed to digitize dental clinic workflows. Features include secure patient authentication, treatment tracking, and dynamic appointment scheduling.",
       tech: ["Next.js", "Firebase", "Tailwind CSS", "Context API"],
       liveLink: "https://robin-dental.vercel.app",
-      githubLink: "https://github.com/Nabil3417/BashaChai",
+      githubLink: "https://github.com/rowhasan446/Dental-Patient-Management",
       image: "/project 1.png" 
     },
     {
