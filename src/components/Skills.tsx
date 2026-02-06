@@ -11,7 +11,8 @@ import {
 const Skills = () => {
   const skillGroups = [
     { 
-      category: "Frontend", 
+      category: "Frontend Architecture", 
+      description: "User Interface & Experience",
       skills: [
         { name: "React.js", icon: <SiReact className="text-[#61DAFB]" /> },
         { name: "Next.js 15", icon: <SiNextdotjs className="text-white" /> },
@@ -21,7 +22,8 @@ const Skills = () => {
       ]
     },
     { 
-      category: "Backend", 
+      category: "Backend Systems", 
+      description: "Logic & API Orchestration",
       skills: [
         { name: "Node.js", icon: <SiNodedotjs className="text-[#339933]" /> },
         { name: "Express", icon: <SiExpress className="text-white" /> },
@@ -31,7 +33,8 @@ const Skills = () => {
       ]
     },
     { 
-      category: "Database", 
+      category: "Data Infrastructure", 
+      description: "Persistence & Caching",
       skills: [
         { name: "PostgreSQL", icon: <SiPostgresql className="text-[#4169E1]" /> },
         { name: "MongoDB", icon: <SiMongodb className="text-[#47A248]" /> },
@@ -41,54 +44,54 @@ const Skills = () => {
       ]
     },
     { 
-      category: "Cloud & AI", 
+      category: "DevOps & Intelligence", 
+      description: "Deployment & AI Integration",
       skills: [
         { name: "Docker", icon: <SiDocker className="text-[#2496ED]" /> },
-        { name: "CI/CD", icon: <SiGithubactions className="text-[#2088FF]" /> },
+        { name: "GitHub Actions", icon: <SiGithubactions className="text-[#2088FF]" /> },
         { name: "AWS", icon: <SiAmazonwebservices className="text-[#FF9900]" /> },
-        { name: "LLM/AI", icon: <SiOpenai className="text-[#412991]" /> },
+        { name: "LLM / OpenAI", icon: <SiOpenai className="text-[#412991]" /> },
         { name: "Vercel", icon: <SiVercel className="text-white" /> },
       ]
     }
   ];
 
-  // Container variants for staggering the groups
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
+      transition: { staggerChildren: 0.1 }
     }
   };
 
-  // Variants for individual cards
   const cardVariants: Variants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 20 },
     visible: { 
       opacity: 1, 
       y: 0, 
-      transition: { type: "spring", stiffness: 100 } 
+      transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } 
     }
   };
 
   return (
-    <section id="skills" className="py-24 bg-[#030712] relative overflow-hidden scroll-mt-20">
-      {/* Ambient background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-blue-600/5 blur-[120px] rounded-full pointer-events-none"></div>
-
+    <section id="skills" className="py-32 bg-[#030712] relative overflow-hidden scroll-mt-20">
+      <div className="absolute inset-0 opacity-[0.02] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none"></div>
+      
       <div className="container mx-auto px-6 relative z-10">
         <motion.div 
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-24"
         >
-          <h2 className="text-4xl font-bold text-white mb-4">Technical Stack</h2>
-          <div className="h-1 w-20 bg-blue-600 mx-auto rounded-full mb-6"></div>
-          <p className="text-gray-400 max-w-xl mx-auto italic">
-            "The strength of the architecture is defined by the tools chosen to build it."
+          <div className="inline-block px-4 py-1.5 mb-6 rounded-full border border-blue-500/20 bg-blue-500/5 backdrop-blur-md">
+            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-500">Core Capabilities</span>
+          </div>
+          <h2 className="text-5xl md:text-6xl font-black text-white mb-6 tracking-tighter">
+            Technical <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40">Ecosystem.</span>
+          </h2>
+          <p className="text-gray-500 max-w-2xl mx-auto text-lg">
+            A modular approach to full-stack engineering, leveraging <span className="text-white">Industry-Standard</span> tools for high-performance production environments.
           </p>
         </motion.div>
 
@@ -96,38 +99,56 @@ const Skills = () => {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
+          viewport={{ once: true }}
+          className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
         >
           {skillGroups.map((group, index) => (
             <motion.div 
               key={index} 
               variants={cardVariants}
-              whileHover={{ y: -5, borderColor: "rgba(59, 130, 246, 0.5)" }}
-              className="p-8 rounded-3xl bg-gray-900/20 border border-gray-800 transition-colors duration-500 backdrop-blur-sm"
+              className="group relative p-8 rounded-[2.5rem] bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] hover:border-blue-500/30 transition-all duration-500 shadow-2xl shadow-blue-900/10"
             >
-              <h3 className="text-sm font-black uppercase tracking-[0.2em] text-blue-500 mb-8 border-b border-gray-800 pb-4">
-                {group.category}
-              </h3>
+              <div className="absolute inset-0 rounded-[2.5rem] bg-blue-500/0 group-hover:bg-blue-600/5 blur-2xl transition-all duration-700" />
               
-              <div className="grid grid-cols-2 gap-y-6">
-                {group.skills.map((skill, idx) => (
-                  <motion.div 
-                    key={idx} 
-                    className="flex flex-col items-start group cursor-default"
-                    whileHover={{ scale: 1.05 }}
-                  >
-                    <div className="text-2xl mb-2 opacity-70 group-hover:opacity-100 transition-all duration-300">
-                      {skill.icon}
+              <div className="relative z-10">
+                <h3 className="text-[11px] font-black uppercase tracking-[0.25em] text-blue-500 mb-1">
+                  {group.category}
+                </h3>
+                <p className="text-[10px] text-gray-500 mb-10 font-medium italic">{group.description}</p>
+                
+                <div className="space-y-8">
+                  {group.skills.map((skill, idx) => (
+                    <div key={idx} className="flex items-center gap-5 group/item">
+                      {/* INCREASED LOGO SIZE & PERMANENT COLOR */}
+                      <div className="text-3xl opacity-90 group-hover/item:opacity-100 group-hover/item:scale-125 transition-all duration-300 transform-gpu">
+                        {skill.icon}
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="text-xs font-bold text-gray-300 group-hover/item:text-white transition-colors">
+                          {skill.name}
+                        </span>
+                        <div className="h-[1px] w-0 group-hover/item:w-full bg-blue-500/50 transition-all duration-500" />
+                      </div>
                     </div>
-                    <span className="text-[10px] font-bold text-gray-500 group-hover:text-white uppercase tracking-tighter transition-colors duration-300">
-                      {skill.name}
-                    </span>
-                  </motion.div>
-                ))}
+                  ))}
+                </div>
               </div>
             </motion.div>
           ))}
+        </motion.div>
+
+        {/* Technical Footer Indicator */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 1 }}
+          className="mt-20 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6"
+        >
+          <div className="flex items-center gap-4 text-gray-600">
+            <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="text-[10px] font-mono tracking-widest uppercase">ENTERPRISE-GRADE STACK | ENGINEERED FOR INFINITE SCALABILITY</span>
+          </div>
+          
         </motion.div>
       </div>
     </section>

@@ -1,145 +1,157 @@
 "use client";
 import React from 'react';
 import { motion, easeOut } from 'framer-motion';
+import { FiCode, FiServer, FiTerminal, FiCpu, FiLayers, FiDatabase } from 'react-icons/fi';
 
 const About = () => {
-  // Animation for the progress bars
   const barVariants = (width: string) => ({
     hidden: { width: 0 },
     visible: { 
       width: width, 
-      transition: { duration: 1.5, ease: easeOut } 
+      transition: { duration: 1.5, ease: easeOut, delay: 0.2 } 
     }
   });
 
+  const skillBars = [
+    { label: "Full-Stack (Next.js/React)", val: "95%", color: "from-blue-600 to-cyan-400" },
+    { label: "Backend (Node.js/Python)", val: "90%", color: "from-cyan-400 to-emerald-400" },
+    { label: "Database (MongoDB/SQL)", val: "88%", color: "from-emerald-400 to-blue-500" },
+    { label: "Type-Safe Engineering (TS)", val: "92%", color: "from-purple-500 to-blue-400" }
+  ];
+
   return (
-    <section id="about" className="py-24 bg-[#030712] relative overflow-hidden">
-      {/* Decorative background element */}
-      <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
-        <motion.div 
-          animate={{ 
-            scale: [1, 1.2, 1],
-            opacity: [0.05, 0.1, 0.05] 
-          }}
-          transition={{ duration: 8, repeat: Infinity }}
-          className="absolute top-10 left-10 w-64 h-64 bg-blue-500 rounded-full blur-[120px]"
-        ></motion.div>
-      </div>
+    <section id="about" className="py-32 bg-[#030712] relative overflow-hidden scroll-mt-20">
+      <div className="absolute inset-0 opacity-[0.03] bg-[grid-white/20] [mask-image:radial-gradient(white,transparent)] pointer-events-none" />
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-12 gap-16 items-start">
+          
+          <div className="grid lg:grid-cols-12 gap-8 items-stretch">
             
-            {/* LEFT SIDE: Professional Philosophy */}
+            {/* 1. THE PHILOSOPHY (Updated for Technical Depth) */}
             <motion.div 
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="lg:col-span-7 space-y-8"
+              className="lg:col-span-7 p-10 bg-gray-900/30 backdrop-blur-3xl border border-white/5 rounded-[2.5rem] flex flex-col justify-center relative overflow-hidden"
             >
-              <div>
-                <h2 className="text-4xl md:text-5xl font-extrabold text-white leading-tight">
-                  Architecting Digital <br /> 
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
-                    Infrastructure & Experience
-                  </span>
-                </h2>
-                <motion.div 
-                  initial={{ width: 0 }}
-                  whileInView={{ width: 96 }}
-                  viewport={{ once: true }}
-                  className="h-1.5 bg-blue-600 mt-6 rounded-full"
-                ></motion.div>
-              </div>
-
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-8 tracking-tight leading-tight">
+                Engineering <br /> 
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Modern Infrastructure.</span>
+              </h2>
+              
               <div className="space-y-6 text-gray-400 text-lg leading-relaxed">
                 <p>
-                  I thrive at the intersection of <span className="text-white font-semibold">robust system logic</span> and 
-                  <span className="text-white font-semibold"> high-fidelity user interaction</span>. My engineering process is 
-                  driven by the belief that software should not just function, but scale effortlessly and feel intuitive.
+                  I build high-end digital products using the <span className="text-white font-medium">Next.js & Node.js</span> ecosystem. My expertise lies in creating seamless, <span className="text-white font-medium">TypeScript-driven</span> applications that prioritize both developer experience and end-user performance.
                 </p>
                 <p>
-                  As a Lead-focused <span className="text-blue-400">Full-Stack Engineer at Tricode IT</span>, I specialize 
-                  in translating complex business requirements into high-performance technical specifications. I am 
-                  dedicated to the <span className="text-white">Next.js ecosystem</span>, utilizing TypeScript to 
-                  enforce type-safety and structural integrity.
-                </p>
-                <p>
-                  Beyond writing code, I am an advocate for <span className="text-emerald-400">Engineering Excellence</span>. 
-                  This involves rigorous performance benchmarking, implementing automated CI/CD pipelines, and 
-                  integrating AI-driven automation.
+                  From designing <span className="text-blue-400">RESTful APIs</span> and <span className="text-blue-400">GraphQL schemas</span> to managing complex data with <span className="text-white">MongoDB and PostgreSQL</span>, I ensure every layer of the stack is optimized for scale, security, and sub-second latency.
                 </p>
               </div>
 
-              {/* Pro Feature: Quick Values */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-8">
-                {[
-                  { title: "Performance", desc: "Optimizing for sub-second load times.", color: "border-blue-600" },
-                  { title: "Scalability", desc: "Modular systems that grow with demand.", color: "border-cyan-500" },
-                  { title: "Security", desc: "Enterprise-grade auth & encryption.", color: "border-emerald-500" }
-                ].map((val, i) => (
-                  <motion.div 
-                    key={i}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.2 }}
-                    className={`border-l-2 ${val.color} pl-4`}
-                  >
-                    <h4 className="text-white font-bold uppercase text-xs tracking-widest">{val.title}</h4>
-                    <p className="text-gray-500 text-sm mt-1">{val.desc}</p>
-                  </motion.div>
-                ))}
+              <div className="flex gap-8 mt-10">
+                <div className="flex flex-col">
+                  <span className="text-white font-black text-xl tracking-tighter">Full-Stack</span>
+                  <span className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Integration</span>
+                </div>
+                <div className="flex flex-col border-l border-white/10 pl-8">
+                  <span className="text-white font-black text-xl tracking-tighter">Data-Driven</span>
+                  <span className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Systems</span>
+                </div>
               </div>
             </motion.div>
 
-            {/* RIGHT SIDE: Technical Prowess Card */}
+            {/* 2. LIVE TERMINAL (Updated with Specific Tech Stack) */}
             <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="lg:col-span-5"
+              className="lg:col-span-5 bg-black/60 border border-white/10 rounded-[2.5rem] p-8 font-mono text-[11px] flex flex-col shadow-2xl overflow-hidden relative"
             >
-              <div className="bg-gray-900/40 backdrop-blur-xl border border-white/10 p-8 rounded-3xl shadow-2xl relative overflow-hidden group">
-                <h3 className="text-2xl font-bold text-white mb-8">Technical Mastery</h3>
+              <div className="flex gap-2 mb-6">
+                <div className="w-2.5 h-2.5 rounded-full bg-red-500/40" />
+                <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/40" />
+                <div className="w-2.5 h-2.5 rounded-full bg-green-500/40" />
+              </div>
+              <div className="space-y-4">
+                <p className="text-blue-400 flex items-center gap-2 animate-pulse"><FiTerminal /> core_engine.v2: operational</p>
+                <p className="text-gray-500">{'>'} ahatesam.getTechStack()</p>
+                <p className="text-gray-300">{'>'} frontend: ["Next.js", "React", "Tailwind"]</p>
+                <p className="text-gray-300">{'>'} backend: ["Node.js", "Express", "Python"]</p>
+                <p className="text-gray-300">{'>'} database: ["MongoDB", "PostgreSQL", "Prisma"]</p>
+                <p className="text-gray-300">{'>'} cloud: ["AWS", "Vercel", "Docker"]</p>
                 
-                <div className="space-y-6">
-                  {[
-                    { label: "Frontend Engineering", val: "95%", color: "from-blue-600 to-cyan-400" },
-                    { label: "Backend Architecture", val: "90%", color: "from-cyan-400 to-emerald-400" },
-                    { label: "DevOps & Cloud", val: "85%", color: "from-emerald-400 to-green-400" },
-                    { label: "AI & LLM Integration", val: "80%", color: "from-purple-400 to-blue-400" }
-                  ].map((skill, i) => (
-                    <div key={i}>
-                      <div className="flex justify-between mb-2">
-                        <span className="text-gray-300 font-medium text-sm">{skill.label}</span>
-                        <span className="text-blue-400 text-sm">{skill.val}</span>
+                <div className="pt-6 mt-6 border-t border-white/5 space-y-4">
+                  <p className="text-white/40 uppercase tracking-[0.2em] text-[10px] font-bold">Proficiency Matrix</p>
+                  
+                  <div className="space-y-5">
+                    {skillBars.map((skill, i) => (
+                      <div key={i}>
+                        <div className="flex justify-between mb-2">
+                          <span className="text-gray-400 text-[10px] uppercase font-bold">{skill.label}</span>
+                          <span className="text-blue-400 text-[10px] font-mono">{skill.val}</span>
+                        </div>
+                        <div className="w-full bg-white/5 h-1 rounded-full overflow-hidden">
+                          <motion.div 
+                            variants={barVariants(skill.val)}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true }}
+                            className={`bg-gradient-to-r ${skill.color} h-full`}
+                          />
+                        </div>
                       </div>
-                      <div className="w-full bg-gray-800 h-1.5 rounded-full overflow-hidden">
-                        <motion.div 
-                          variants={barVariants(skill.val)}
-                          initial="hidden"
-                          whileInView="visible"
-                          viewport={{ once: true }}
-                          className={`bg-gradient-to-r ${skill.color} h-full`}
-                        ></motion.div>
-                      </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
+              </div>
+            </motion.div>
 
-                <motion.div 
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ delay: 1 }}
-                  className="mt-10 p-4 bg-blue-600/10 rounded-2xl border border-blue-500/20"
-                >
-                  <p className="text-blue-300 text-xs text-center font-medium italic">
-                    "Continuously evolving with the cutting edge of the modern web."
-                  </p>
-                </motion.div>
+            {/* 3. PERFORMANCE STATS (Updated Icons & Labels) */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="lg:col-span-4 p-8 bg-gray-900/20 border border-white/5 rounded-[2rem] flex items-center gap-6 group"
+            >
+              <div className="w-14 h-14 bg-blue-600/10 rounded-2xl flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform duration-500">
+                <FiCode size={24} />
+              </div>
+              <div>
+                <p className="text-gray-500 text-[10px] uppercase font-black tracking-widest mb-1">Frontend Core</p>
+                <p className="text-white font-bold text-lg leading-tight">React & Next.js</p>
+              </div>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="lg:col-span-4 p-8 bg-gray-900/20 border border-white/5 rounded-[2rem] flex items-center gap-6 group"
+            >
+              <div className="w-14 h-14 bg-cyan-600/10 rounded-2xl flex items-center justify-center text-cyan-400 group-hover:scale-110 transition-transform duration-500">
+                <FiDatabase size={24} />
+              </div>
+              <div>
+                <p className="text-gray-500 text-[10px] uppercase font-black tracking-widest mb-1">Data Layer</p>
+                <p className="text-white font-bold text-lg leading-tight">Mongo & Prisma</p>
+              </div>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="lg:col-span-4 p-8 bg-gray-900/20 border border-white/5 rounded-[2rem] flex items-center gap-6 group"
+            >
+              <div className="w-14 h-14 bg-emerald-600/10 rounded-2xl flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform duration-500">
+                <FiTerminal size={24} />
+              </div>
+              <div>
+                <p className="text-gray-500 text-[10px] uppercase font-black tracking-widest mb-1">Environment</p>
+                <p className="text-white font-bold text-lg leading-tight">Node & Docker</p>
               </div>
             </motion.div>
 

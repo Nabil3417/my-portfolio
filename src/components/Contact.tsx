@@ -1,130 +1,184 @@
 "use client";
-import React from 'react';
-import { motion } from 'framer-motion';
-import { FiMail, FiGithub, FiPhone, FiCopy } from 'react-icons/fi';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FiMail, FiGithub, FiPhone, FiCopy, FiCheck, FiArrowUpRight } from 'react-icons/fi';
 
 const Contact = () => {
+  const [copied, setCopied] = useState(false);
+
   const contactInfo = [
     {
-      label: "Email",
+      label: "Direct Email",
       value: "ahatesam.ahamed@northsouth.edu",
       icon: <FiMail className="text-blue-400" />,
       link: "mailto:ahatesam.ahamed@northsouth.edu",
-      copyable: true
+      type: "email"
     },
     {
-      label: "GitHub",
+      label: "GitHub Profile",
       value: "github.com/Nabil3417",
       icon: <FiGithub className="text-purple-400" />,
       link: "https://github.com/Nabil3417",
-      copyable: false
+      type: "link"
     },
     {
-      label: "Phone",
+      label: "Mobile/WhatsApp",
       value: "+880 1997 646 866",
       icon: <FiPhone className="text-emerald-400" />,
       link: "tel:+8801997646866",
-      copyable: false
+      type: "link"
     }
   ];
 
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
-    alert("Email copied to clipboard!");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
   };
 
   return (
-    <section id="contact" className="py-24 bg-[#030712] relative overflow-hidden scroll-mt-20">
-      {/* Dynamic Background Glow */}
-      <motion.div 
-        animate={{ 
-          scale: [1, 1.2, 1],
-          opacity: [0.05, 0.08, 0.05] 
-        }}
-        transition={{ duration: 10, repeat: Infinity }}
-        className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-blue-600 rounded-full blur-[120px] pointer-events-none"
-      ></motion.div>
-
+    <section id="contact" className="py-32 bg-[#030712] relative overflow-hidden scroll-mt-20">
+      {/* Visual Tech Accents */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[1px] bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
+      
       <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-5xl mx-auto">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-white mb-4 italic">Let's Connect</h2>
-            <div className="h-1 w-20 bg-gradient-to-r from-blue-600 to-cyan-400 mx-auto rounded-full mb-8"></div>
-            <p className="text-gray-400 text-lg max-w-xl mx-auto">
-              Currently open to <span className="text-white font-medium">Full-Stack opportunities</span> and 
-              technical collaborations. Let's build something extraordinary.
-            </p>
-          </motion.div>
+        <div className="max-w-6xl mx-auto">
+          
+          <div className="grid lg:grid-cols-2 gap-20 items-center">
+            
+            {/* Left Side: Value Proposition */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] font-black uppercase tracking-[0.2em] mb-6">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                </span>
+                Open for Opportunities
+              </div>
+              
+              <h2 className="text-5xl md:text-6xl font-bold text-white mb-8 leading-tight">
+                Let’s build the <br /> 
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">next big thing.</span>
+              </h2>
+              
+              <p className="text-gray-400 text-lg mb-10 max-w-md leading-relaxed">
+                Specializing in <span className="text-white">Full-Stack Development</span> and AI integration. 
+                Whether you have a project in mind or just want to say hi, my inbox is always open.
+              </p>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {contactInfo.map((info, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="group relative"
-              >
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-3xl blur opacity-0 group-hover:opacity-20 transition duration-500"></div>
-                
-                <div className="relative p-8 bg-gray-900/40 backdrop-blur-xl border border-white/5 rounded-3xl h-full flex flex-col items-center text-center transition-all duration-300 group-hover:border-blue-500/30">
-                  <div className="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 group-hover:bg-blue-600/10 transition-all duration-500">
-                    {info.icon}
+              <div className="flex gap-4">
+                <motion.div 
+                  whileHover={{ scale: 1.05 }} 
+                  className="p-4 bg-gray-900/50 border border-white/5 rounded-2xl flex items-center gap-4 group cursor-default"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-blue-600/10 flex items-center justify-center text-blue-400 font-bold">NSU</div>
+                  <div>
+                    <p className="text-[10px] text-gray-500 uppercase font-black">University</p>
+                    <p className="text-xs text-gray-300 font-medium tracking-wide">North South University</p>
                   </div>
-                  
-                  <h3 className="text-gray-500 text-xs font-black uppercase tracking-[0.2em] mb-2">{info.label}</h3>
-                  <p className="text-white font-medium mb-6 break-all">{info.value}</p>
-                  
-                  <div className="flex gap-3 mt-auto w-full">
-                    <a 
-                      href={info.link}
-                      target={info.label === "GitHub" ? "_blank" : "_self"}
-                      className="flex-1 py-2 bg-white/5 hover:bg-white/10 text-white text-xs font-bold rounded-xl border border-white/5 transition-colors"
+                </motion.div>
+              </div>
+            </motion.div>
+
+            {/* Right Side: Contact Cards */}
+            <div className="space-y-4">
+              {contactInfo.map((info, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="group relative"
+                >
+                  <a 
+                    href={info.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="block p-6 bg-gray-900/30 backdrop-blur-md border border-white/5 rounded-2xl hover:bg-gray-800/40 hover:border-blue-500/30 transition-all duration-500"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-5">
+                        <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-xl group-hover:scale-110 transition-transform duration-500">
+                          {info.icon}
+                        </div>
+                        <div>
+                          <p className="text-[10px] text-gray-500 font-black uppercase tracking-widest mb-1">{info.label}</p>
+                          <p className="text-white font-medium text-sm md:text-base">{info.value}</p>
+                        </div>
+                      </div>
+                      <FiArrowUpRight className="text-gray-600 group-hover:text-blue-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+                    </div>
+                  </a>
+
+                  {info.type === "email" && (
+                    <button 
+                      onClick={(e) => {
+                        e.preventDefault();
+                        copyToClipboard(info.value);
+                      }}
+                      className="absolute right-14 top-1/2 -translate-y-1/2 p-2 text-gray-500 hover:text-white transition-colors"
                     >
-                      {info.label === "Email" ? "Write Me" : "Visit"}
-                    </a>
-                    {info.copyable && (
-                      <button 
-                        onClick={() => copyToClipboard(info.value)}
-                        className="p-2 bg-white/5 hover:bg-white/10 text-white rounded-xl border border-white/5 transition-colors"
-                        title="Copy to clipboard"
-                      >
-                        <FiCopy />
-                      </button>
-                    )}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+                      <AnimatePresence mode="wait">
+                        {copied ? (
+                          <motion.div key="check" initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }}>
+                            <FiCheck className="text-emerald-400" />
+                          </motion.div>
+                        ) : (
+                          <motion.div key="copy" initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }}>
+                            <FiCopy />
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </button>
+                  )}
+                </motion.div>
+              ))}
+            </div>
           </div>
 
-          {/* Professional Footer */}
-          <motion.div 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.5 }}
-            className="mt-32 pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6"
-          >
-            <div className="flex items-center gap-4">
-              <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center font-black text-xs text-white">AA</div>
-              <p className="text-gray-500 text-sm font-medium tracking-wide">
-                AHATESAM AHAMED <span className="mx-2 text-gray-800">|</span> 2026
+          {/* Clean Pro Footer */}
+          <footer className="mt-40 pt-16 border-t border-white/5">
+            <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-16">
+              <div className="max-w-xs">
+                <div className="text-2xl font-black text-white mb-6">AA<span className="text-blue-600">.</span></div>
+                <p className="text-gray-500 text-sm leading-relaxed">
+                  Engineering robust digital solutions with a focus on AI integration and scalable system design. 
+                  Based in Dhaka, available globally.
+                </p>
+              </div>
+              
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-16">
+                <div className="space-y-4 text-sm font-medium">
+                  <p className="text-white text-xs font-black uppercase tracking-widest mb-6">Sitemap</p>
+                  <a href="#about" className="block text-gray-500 hover:text-blue-400 transition-colors">About</a>
+                  <a href="#projects" className="block text-gray-500 hover:text-blue-400 transition-colors">Projects</a>
+                  <a href="#contact" className="block text-gray-500 hover:text-blue-400 transition-colors">Contact</a>
+                </div>
+                <div className="space-y-4 text-sm font-medium">
+                  <p className="text-white text-xs font-black uppercase tracking-widest mb-6">Socials</p>
+                  <a href="https://github.com/Nabil3417" target="_blank" className="block text-gray-500 hover:text-blue-400 transition-colors">GitHub</a>
+                  <a href="#" className="block text-gray-500 hover:text-blue-400 transition-colors">LinkedIn</a>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-col md:flex-row justify-between items-center gap-6 py-8 border-t border-white/5">
+              <p className="text-gray-600 text-[11px] font-mono tracking-widest uppercase">
+                © 2026 AHATESAM AHAMED | Full-Stack Software Engineer
               </p>
+              <div className="flex gap-6">
+                <div className="w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.5)]"></div>
+                <div className="w-2 h-2 rounded-full bg-cyan-500"></div>
+                <div className="w-2 h-2 rounded-full bg-purple-500"></div>
+              </div>
             </div>
-            
-            <div className="flex gap-8 text-xs font-black text-gray-600 uppercase tracking-widest">
-              <span className="hover:text-blue-500 cursor-default transition-colors">Clean Code</span>
-              <span className="hover:text-cyan-500 cursor-default transition-colors">Modern Stack</span>
-              <span className="hover:text-emerald-500 cursor-default transition-colors">Scalable Design</span>
-            </div>
-          </motion.div>
+          </footer>
+
         </div>
       </div>
     </section>
