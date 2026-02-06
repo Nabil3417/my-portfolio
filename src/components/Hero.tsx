@@ -45,7 +45,7 @@ const Hero = () => {
         <motion.div 
           variants={itemVariants}
           animate={{ y: [0, -10, 0] }} // Subtle floating animation
-          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+          transition={{ duration: 5, repeat: Infinity, ease: [0.42, 0, 0.58, 1] as const }}
           className="relative w-48 h-48 md:w-56 md:h-56 mb-8"
         >
           <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-blue-600 to-cyan-400 animate-spin-slow opacity-50 blur-md"></div>
